@@ -1,0 +1,14 @@
+@media (max-width: 800px) {
+  section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .board { 
+    order: -1; 
+  }
+
+  .scores {
+    margin-bottom: 8rem;
+  }
+}
