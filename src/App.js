@@ -17,18 +17,32 @@ function App() {
 
   const moves = (e) => {
     if (isLock) return;
+
     const column = parseInt(e.currentTarget.dataset.column);
 
     if (turn === "red") {
       console.log(c4)
+      
       c4.putRed(column);
-      setTurn("yellow");     
+      
+      if(c4.isMoved) {
+        setTurn("yellow");     
+      }
     }
 
     if (turn === "yellow") {
       console.log(c4)
+      
       c4.putYellow(column);
-      setTurn("red");
+
+      if(c4.isMoved) {
+        setTurn("red");
+      }
+    }
+
+    if (c4.boardCapacity === 0) {
+      setIsLock(true);
+      setIsNext(true);
     }
     
   }

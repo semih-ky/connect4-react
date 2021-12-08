@@ -24,6 +24,8 @@ class Connect4 {
     }
 
     this.isMoved = false;
+
+    this.boardCapacity = row * column;
   }
 
 
@@ -41,8 +43,13 @@ class Connect4 {
     }
 
     this.isMoved = false;
+
+    this.boardCapacity = this.size.row * this.size.column;
   }
   
+  isBoardCapacityFull() {
+    return this.boardCapacity === 0;
+  }
 
   putRed(column) {
 
@@ -52,12 +59,18 @@ class Connect4 {
       }
     }
 
+    if (this.boardCapacity === 0) {
+      this.isMoved = false;
+      return this;
+    }
 
     for (let i = this.size.row - 1; i >= 0; i--) {
 
       if (!this.board[column][i]) {
 
         this.board[column][i] = "red";
+
+        this.boardCapacity -= 1;
         
         this.lastMove.row = i;
         
@@ -88,11 +101,18 @@ class Connect4 {
       }
     }
 
+    if (this.boardCapacity === 0) {
+      this.isMoved = false;
+      return this;
+    }
+
     for (let i = this.size.row - 1; i >= 0; i--) {
 
       if (!this.board[column][i]) {
 
         this.board[column][i] = "yellow";
+
+        this.boardCapacity -= 1;
         
         this.lastMove.row = i;
         
